@@ -1,4 +1,4 @@
-import { Button, Codicon } from '@hermes/plugin-sdk'
+import { Button, Codicon, PALETTE_AREA, STATUSBAR_AREAS } from '@hermes/plugin-sdk'
 import { useEffect, useRef, useState } from 'react'
 import { jsx, jsxs } from 'react/jsx-runtime'
 
@@ -80,14 +80,52 @@ function DiscordCommunityPane() {
   })
 }
 
+function DiscordToggleButton({ toggle }) {
+  return jsx(Button, {
+    'aria-label': 'Toggle Nous Discord',
+    title: 'Toggle Nous Discord',
+    size: 'icon-sm',
+    variant: 'ghost',
+    onClick: toggle,
+    children: jsx(Codicon, { name: 'comment-discussion' })
+  })
+}
+
 export default {
   id: ID,
   name: 'Nous Discord Community',
   register(ctx) {
-    ctx.register({
+    const contributions = [{
       id: 'community', area: 'panes', title: 'Nous Discord',
       data: { placement: 'right', dock: { pane: 'workspace', pos: 'right' }, width: '520px', minWidth: '360px', lifecycleKeepAlive: true },
       render: () => jsx(DiscordCommunityPane, {})
-    })
+    }]
+
+    // Hermes versions with the scoped pane-control API get stable toggle doors.
+    // Older versions still load the pane; feature detection avoids a dead control.
+    if (ctx.panes?.toggle) {
+      const toggle = () => ctx.panes.toggle('community')
+
+      contributions.push(
+        {
+          id: 'toggle-command',
+          area: PALETTE_AREA,
+          data: {
+            id: `${ID}.toggle`,
+            label: 'Toggle Nous Discord',
+            keywords: ['discord', 'nous', 'community', 'pane', 'sidebar'],
+            run: toggle
+          }
+        },
+        {
+          id: 'toggle-status',
+          area: STATUSBAR_AREAS.right,
+          order: 95,
+          render: () => jsx(DiscordToggleButton, { toggle })
+        }
+      )
+    }
+
+    ctx.registerMany(contributions)
   }
 }

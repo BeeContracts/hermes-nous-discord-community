@@ -10,6 +10,8 @@ You operate Discord directly. The plugin does **not** automate your account, rea
 - Opens the Nous Research server after login
 - Persistent, per-user Chromium partition for login state
 - Pane remains mounted while hidden or tabbed, avoiding needless reauthentication
+- Native status-bar button and **Toggle Nous Discord** command when Hermes exposes scoped pane controls
+- Backward compatible: older Hermes versions still load the Discord pane and omit unsupported toggle controls
 - Sandboxed guest: `contextIsolation=yes`, `nodeIntegration=no`, `sandbox=yes`
 - Chrome-compatible user agent for Discord's embedded-browser login checks
 - No build step or third-party package dependencies
@@ -25,6 +27,21 @@ Final path:
 ```
 
 Windows: run `.\install.ps1` from this repository. macOS/Linux: run `./install.sh`.
+
+## Two distribution paths
+
+This standalone repository is the update-safe plugin path. It runs on ordinary
+Hermes Desktop releases. On Hermes versions that include the scoped
+[`ctx.panes`](https://github.com/BeeContracts/hermes-agent/tree/feature/plugin-pane-controls)
+API, it also registers a native status-bar toggle and a **Toggle Nous Discord**
+command. On older versions, the pane still works and those unsupported controls
+are simply not registered.
+
+For the exact built-in **Discord Community** sidebar button and overlay panel,
+use the separately maintained
+[`BeeContracts/hermes-agent`](https://github.com/BeeContracts/hermes-agent/tree/feature/discord-community)
+fork. That distribution modifies Hermes Desktop itself; this repository never
+replaces the user's Hermes installation unless they explicitly choose the fork.
 
 ## Privacy and security
 
