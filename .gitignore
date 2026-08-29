@@ -1,0 +1,21 @@
+Partitions/
+User Data/
+Cookies*
+Local Storage/
+Session Storage/
+*.sqlite
+*.sqlite-*
+release/
+dist/
+*.exe
+*.msi
+*.dmg
+*.AppImage
+*.png
+*.jpg
+*.jpeg
+*.webp
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

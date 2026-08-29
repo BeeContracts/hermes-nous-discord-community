@@ -1,0 +1,9 @@
+{
+  "name": "hermes-desktop-plugin-nous-discord-community",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Human-operated Nous Discord pane for Hermes Desktop",
+  "scripts": { "check": "node --check plugin.js && node scripts/security-check.mjs" },
+  "license": "MIT"
+}
