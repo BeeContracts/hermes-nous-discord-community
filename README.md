@@ -1,4 +1,4 @@
-<img width="743" height="992" alt="image" src="https://github.com/user-attachments/assets/a5a3a0f1-a1a3-4d88-af8b-7b332b7d2eb4" /># Nous Discord Community for Hermes Desktop
+# Nous Discord Community for Hermes Desktop
 
 A local Hermes Desktop plugin that opens the official Nous Research Discord web client in a native, draggable Hermes pane.
 
